@@ -1,5 +1,5 @@
 # 1. 开发环境配置
-*sdk技术问题沟通QQ群：609994083
+sdk技术问题沟通QQ群：609994083
 
 ## 1.1. 总体使用流程
 
@@ -160,7 +160,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | authType    | String | 认证类型：0:其他；</br>1:WiFi下网关鉴权；</br>2:网关鉴权；</br>3:短信上行鉴权；</br>7:短信验证码登录 |
 | authTypeDes | String | 认证类型描述，对应authType                        |
 | resultDesc  | String | 失败时返回：返回错误码说明                            |
-| token       | String | 成功时返回：身份标识，字符串形式的token，第三方应用将该凭证经应用平台向统一认证平台请求认证 |
+| token       | String | 成功时返回：临时凭证                               |
 | openId      | String | 成功时返回：用户身份唯一标识                           |
 
 </br>
