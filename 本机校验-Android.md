@@ -214,7 +214,7 @@ mAuthnHelper.getToken(Constant.APP_ID,
 
 **请求方法：** POST+json
 
-**回调地址：**请参考开发者接入流程文档中`配置业务服务端地址`相关操作
+**回调地址：**请参考开发者接入流程文档
 
 </br>
 
