@@ -397,4 +397,10 @@ mAuthnHelper.getToken(Constant.APP_ID,
 | 200009 | 应用合法性校验失败              |
 | 200010 | imsi获取失败或者没有sim卡，预取号失败 |
 
+</br>
+
+# 5. Q&A常见问题
+I、有关json形式报文发送为什么报参数解析错误
+答:①json形式的报文交互必须是标准的json格式；②发送时请设置content type为 application/json
+
 <div STYLE="page-break-after: always;"></div>
