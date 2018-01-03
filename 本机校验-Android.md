@@ -34,7 +34,6 @@ sdk技术问题沟通QQ群：609994083
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-<uses-permission android:name="android.permission.SEND_SMS" />
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
 
@@ -69,6 +68,12 @@ public void onCreate(Bundle savedInstanceState) {
 mListener = new TokenListener() {
     @Override
     public void onGetTokenComplete(JSONObject jObj) {
+    	try {
+               if (timer != null)
+               timer.cancel();//回调的时候取消定时器
+        } catch (Exception e) {
+               e.printStackTrace();
+        }
         if (jObj != null) {
             mResultString = jObj.toString();
             mHandler.sendEmptyMessage(RESULT);
@@ -157,7 +162,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | 字段          | 类型     | 含义                                       |
 | ----------- | ------ | ---------------------------------------- |
 | resultCode  | String | 接口返回码，“103000”为成功。具体响应码见4.1. 本机号码校验接口返回码 |
-| authType    | String | 认证类型：0:其他；</br>1:WiFi下网关鉴权；</br>2:网关鉴权；</br>3:短信上行鉴权；</br>7:短信验证码登录 |
+| authType    | String | 认证类型：0:其他；</br>1:WiFi下网关鉴权；</br>2:网关鉴权； |
 | authTypeDes | String | 认证类型描述，对应authType                        |
 | resultDesc  | String | 失败时返回：返回错误码说明                            |
 | token       | String | 成功时返回：临时凭证，token有效期5min，一次有效             |
@@ -187,6 +192,45 @@ mAuthnHelper.getToken(Constant.APP_ID,
 }
 ```
 
+## 2.3. 超时调用方法
+
+### 2.3.1. 方法描述
+
+接入方定时器超时调用方法。
+当调用方对调用SDK 获取token 有时间限制时，可以实现一个定时器，当超时的时候SDK还没返回时，进行调用。
+
+</br>
+
+**原型**
+
+```java
+public void cancel()
+```
+
+</br>
+### 2.3.2. 示例
+
+**请求示例代码**
+
+```java
+private void getToken() {
+        timer = new Timer();
+        startOverdueTimer(); //获取 token 的时候启动定时器
+        mAuthnHelper.getToken(Constant.APP_ID, Constant.APP_KEY, mListener);
+    }
+
+    private void startOverdueTimer() {
+        timer.schedule(new TimerTask() {
+
+            @Override
+            public void run() {
+                mAuthnHelper.cancel();//超时的时候进行调用
+		Log.e(TAG, "超时了");
+            }
+
+        }, FORCE_TIMEOUT_TIME);
+    }
+```
 
 
 <div STYLE="page-break-after: always;"></div>
