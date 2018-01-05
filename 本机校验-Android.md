@@ -162,7 +162,7 @@ OnGetTokenComplete的参数JSONObject，含义如下：
 | 字段          | 类型     | 含义                                       |
 | ----------- | ------ | ---------------------------------------- |
 | resultCode  | String | 接口返回码，“103000”为成功。具体响应码见4.1. 本机号码校验接口返回码 |
-| authType    | String | 认证类型：0:其他；</br>1:WiFi下网关鉴权；</br>2:网关鉴权； |
+| authType    | String | 认证类型：0:其他；</br>1:WiFi下网关鉴权；</br>2:网关鉴权；  |
 | authTypeDes | String | 认证类型描述，对应authType                        |
 | resultDesc  | String | 失败时返回：返回错误码说明                            |
 | token       | String | 成功时返回：临时凭证，token有效期2min，一次有效，同一用户（手机号）10分钟内获取token且未使用的数量不超过30个 |
@@ -308,21 +308,19 @@ SDK在获取token过程中，用户手机必须在打开数据网络情况下才
 
 ```
 {
-  "body": {
-    "openType": "1", 
-    "requesterType": "1", 
-    "message ": "", 
-	"expandParams": "",
-    "phoneNum": "4526285940b6fa7fef49e1dcb04ee944f41a8745444015daf2771bfb7ad7c800", 
-    "token": "", 
-    "sign": ""
-    }, 
-  "header": {
-    "msgId ": "61237890345", 
-    "timestamp ": "20160628180001165", 
-    "version ": "2.0", 
-    "appId ": "0008"
-  }
+    "header":{
+        "appId":"3000*****401",
+        "timestamp":"20180104090953788",
+        "version":"1.0",
+        "msgId":"8ADFF305-C7FC-B3E1-B1AE-CC130792FBD0"
+    },
+    "body":{
+        "openType":"1",
+        "token":"STsid0000001515028196605yc1oYNTuPlTlLT10AR3ywr2WApEq14JH",
+        "sign":"227716D80112F953632E4AFBB71C987E9ABF4831ACDA5A7464E2D8F61F0A9477",
+     "phoneNum":"38D19FF8CE10416A6F3048467CB6F7D57A44407CB198C6E8793FFB87FEDFA9B8",
+        "requesterType":"0"
+    }
 }
 ```
 
@@ -332,16 +330,16 @@ SDK在获取token过程中，用户手机必须在打开数据网络情况下才
 
 ```
 {
-  "body": {
-    "resultDesc ": "", 
-    "message": "", 
-    "expandParams ": ""
-    }, 
-   "header": {
-    "msgId": "61237890345", 
-    "timestamp": "20160628180001165", 
-    "resultCode": "000"
-  }
+    "body":{
+        "message":"",
+        "resultDesc":"是本机号码"
+    },
+    "header":{
+        "appId":"3000*****40",
+        "msgId":"8ADFF305-C7FC-B3E1-B1AE-CC130792FBD0",
+        "resultCode":"000",
+        "timestamp":"20180104090957277"
+    }
 }
 ```
 
