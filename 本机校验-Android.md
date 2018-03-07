@@ -133,6 +133,8 @@ public AuthnHelper (Context context)
 
 **临时凭证token：**开发者服务端可凭临时凭证token通过3.1本机号码校验接口对本机号码进行验证。
 
+**注意：获取凭证前，开发者需提前申请`READ_PHONE_STATE`权限，否则会失败！**
+
 </br>
 
 **原型**
